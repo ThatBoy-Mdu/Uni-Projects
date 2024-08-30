@@ -39,13 +39,51 @@ When the silver foil is inserted into the tub, some of the silver nuclei will ca
 
 ## Results
 
+```Python
+import numpy as np
+import math
+import matplotlib.pyplot as plt
+
+# Initial number of nuclei
+N_o = 110
+
+# Create values for time, t, which are the x-components
+x = np.arange(0, 100)
+
+# Let's create a function in Python that will calculate the decay rate
+def decay_rate(half_life, t):
+    # Calculate the decay constant
+    decay_constant = math.log(2) / half_life
+    return np.exp(-decay_constant * t)
+
+# Let's assume a half-life for silver (arbitrary value for demonstration)
+half_life = 23.8  # Half-life in arbitrary time units
+
+# Calculate the decay curve
+y = [N_o * decay_rate(half_life, t) for t in x]
+
+# Adding random fluctuations to simulate real-life randomness
+y_random = y + np.random.normal(0, 5, len(y))
+
+# Now we visualize the half-life for Ag-110 
+# Plot the results
+plt.scatter(x, y_random, label='Random Points')
+plt.plot(x, y, color='red', label='Decay Curve')
+plt.title('Radioactive Decay of Silver-110')
+plt.xlabel('Time(s)')
+plt.ylabel('Number of Nuclei')
+plt.legend()
+plt.show()
+```
+
+
 ![Figure 2024-08-30 154951 (0)](https://github.com/user-attachments/assets/83c1877a-8bc9-4ac4-9180-acdc078894c9)
 
-Figure of 110 Silver Decay
+Figure of 108-Silver Decay
 
 ![Figure 2024-08-30 154951 (1)](https://github.com/user-attachments/assets/baef71c9-aae9-4ef0-9dd1-7678c5010d6f)
 
-Figure of 108 Silver Decay
+Figure of 110-Silver Decay
 
 ##### Comparison of the theoretical value and experimental value:
 
@@ -92,7 +130,10 @@ These units are essential for quantifying and understanding the properties of io
 ## References
 
 Giordano, N. J., 1997. Computational physics. Upper Saddle River, NJ: Simon & Schuster/ Viacom Comany.
+
 Paul A. Tipler & Ralph A. Llewellyn. 2012. Modern Physics. 6th ed. New York: W.H Freeman.
+
 https://en.wikipedia.org/wiki/Isotopes_of_silver
+
 https://www.sciencedirect.com/science/article/pii/S0969804313005502
 
